@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://reficullive.github.io/WorldSecurityMessenger/public/index.html'; // Replace with your deployed backend URL
+const API_BASE_URL = ' http://localhost:3000'; // Replace with your deployed backend URL
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginDiv = document.getElementById('login');
