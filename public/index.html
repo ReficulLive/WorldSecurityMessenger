@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorldSecretMessenger</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <div id="login" class="centered-container">
+    <h2>Login or Register</h2>
+    <input type="text" id="usernameInput" placeholder="Username" autocomplete="username" />
+    <input type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" />
+    <button id="loginButton">Login</button>
+    <button id="registerButton">Register</button>
+    <div id="loginError" class="error"></div>
+    <button id="darkModeToggle" title="Toggle Dark Mode">Toggle Dark Mode</button>
+    <div id="mobileAppOptions" style="margin-top: 15px;">
+      <button id="iosLaunchButton" class="mobile-app-btn">Launch on iOS</button>
+      <button id="androidLaunchButton" class="mobile-app-btn">Launch on Android</button>
+    </div>
+  </div>
+
+  <div id="chat" class="centered-container" style="display:none;">
+    <div id="inboxContainer">
+      <h3>Inbox</h3>
+      <ul id="inboxList" class="user-list"></ul>
+    </div>
+    <div id="searchContainer">
+      <input type="text" id="userSearchInput" placeholder="Search users by name" autocomplete="off" />
+      <ul id="userSearchResults" class="user-list"></ul>
+    </div>
+    <div id="chatContainer">
+      <h3>Chat with <span id="chatWith"></span></h3>
+      <ul id="messages"></ul>
+      <form id="messageForm">
+        <input id="messageInput" autocomplete="off" placeholder="Type a message" />
+        <button>Send</button>
+      </form>
+    </div>
+    <button id="darkModeToggleChat" title="Toggle Dark Mode">Toggle Dark Mode</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-messaging-compat.js"></script>
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>

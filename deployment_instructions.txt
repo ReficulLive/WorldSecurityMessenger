@@ -1,0 +1,44 @@
+WorldSecretMessenger Deployment Instructions
+
+1. Running Locally:
+-------------------
+- Open a terminal in the project root directory.
+- Install dependencies:
+  npm install
+- Start the server:
+  npm start
+- Open your browser and go to:
+  http://localhost:3000
+
+2. Running with Docker:
+----------------------
+- Build the Docker image:
+  docker build -t worldsecretmessenger .
+- Run the Docker container:
+  docker run -p 3000:3000 worldsecretmessenger
+- Open your browser and go to:
+  http://localhost:3000
+
+3. Deploying to Heroku using GitHub Actions:
+--------------------------------------------
+- Create a Heroku account at https://heroku.com if you don't have one.
+- Create a new Heroku app from the Heroku dashboard.
+- Get your Heroku API key from your Heroku account settings.
+- In your GitHub repository, go to Settings > Secrets and variables > Actions.
+- Add the following secrets:
+  - HEROKU_API_KEY: Your Heroku API key
+  - HEROKU_APP_NAME: Your Heroku app name (the name you created)
+  - HEROKU_EMAIL: Your Heroku account email
+- Make sure your code is pushed to the 'main' branch on GitHub.
+- The GitHub Actions workflow (.github/workflows/deploy.yml) will automatically deploy the app to Heroku on push.
+- After deployment, access your app at:
+  https://<your-heroku-app-name>.herokuapp.com
+
+4. Environment Variables:
+------------------------
+- The app uses environment variables such as JWT_SECRET.
+- For local development, create a .env file in the project root with:
+  JWT_SECRET=your_secret_key
+- For Heroku, set the config vars in the Heroku dashboard under Settings > Config Vars.
+
+This completes the instructions to run and deploy the WorldSecretMessenger app.
